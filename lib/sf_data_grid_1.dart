@@ -29,9 +29,23 @@ class _SfDataGrid1State extends State<SfDataGrid1> {
         selectionColor: Colors.blueAccent, // 선택한 항목의 색
       ),
       child: SfDataGrid(
+        stackedHeaderRows: [
+          StackedHeaderRow(
+            cells: [
+              StackedHeaderCell(
+                columnNames: ['salary1', 'salary2', 'salary3'],
+                child: const Center(
+                  child: Text(
+                    'salary',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
         headerGridLinesVisibility: GridLinesVisibility.both,
         // 표 구분선, both: 가로세로 모두 구분선 생김, horizontal, vertical, none
-        headerRowHeight: 60,
+        headerRowHeight: 30,
         source: employeeDataSource,
         // 표에 나타낼 데이터 소스
         columnWidthMode: ColumnWidthMode.fill,
@@ -62,6 +76,33 @@ class _SfDataGrid1State extends State<SfDataGrid1> {
               ),
             ),
           ),
+          GridColumn(
+            columnName: 'salary1',
+            label: const Center(
+              child: Text(
+                'salary1',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+          GridColumn(
+            columnName: 'salary2',
+            label: const Center(
+              child: Text(
+                'salary2',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+          GridColumn(
+            columnName: 'salary3',
+            label: const Center(
+              child: Text(
+                'salary3',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -81,6 +122,9 @@ class EmployeeDataSource extends DataGridSource {
               // 2열에는 name을 표시
               DataGridCell<String>(
                   columnName: 'designation', value: e.designation),
+              DataGridCell<int>(columnName: 'salary1', value: e.salary[0]),
+              DataGridCell<int>(columnName: 'salary2', value: e.salary[1]),
+              DataGridCell<int>(columnName: 'salary3', value: e.salary[2]),
               // 3열에는 designation을 표시
             ],
           ),
